@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  # Serviço para o Spring Boot (aplicação)
+  app:
+    build: .
+    container_name: stoom-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/store
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+    depends_on:
+      - db
+    networks:
+      - stoom-network
+
+  # Serviço para o banco de dados PostgreSQL
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=store
+    ports:
+      - "5432:5432"
+    networks:
+      - stoom-network
+
+networks:
+  stoom-network:
+    driver: bridge
