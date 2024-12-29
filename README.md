@@ -18,14 +18,23 @@ Este é um projeto de e-commerce que gerencia **produtos**, **categorias** e **m
 Você pode rodar o projeto junto com o PostgreSQL usando o Docker. Para isso, siga os passos abaixo:
 
 #### Passos:
-1. **Construa a imagem Docker para o aplicativo Spring Boot:**
+1. **Clone o repositório e navegue até o diretório do projeto:**
+     ```bash
+     git clone https://github.com/fhssouza/teste-stoom.git
+     cd teste-stoom
+     ```
+2. **Compilar o Projeto com Maven:**
+     ```bash
+     mvn clean package
+     ```
+3. **Construa a imagem Docker para o aplicativo Spring Boot:**
    - Certifique-se de ter o **Docker** instalado em sua máquina.
    - No terminal, execute o seguinte comando para construir a imagem Docker:
      ```bash
      docker-compose build
      ```
 
-2. **Suba os containers usando Docker Compose:**
+4. **Suba os containers usando Docker Compose:**
    - Após a construção da imagem, execute o comando abaixo para iniciar os containers do Spring Boot e PostgreSQL:
      ```bash
      docker-compose up
@@ -34,7 +43,7 @@ Você pode rodar o projeto junto com o PostgreSQL usando o Docker. Para isso, si
    - O container do Spring Boot ficará acessível em `http://localhost:8080`.
    - O PostgreSQL estará acessível em `localhost:5432`, com as credenciais configuradas no `docker-compose.yml`.
 
-3. **Acesse a API via Swagger:**
+5. **Acesse a API via Swagger:**
    - A documentação interativa da API pode ser acessada através do Swagger em `http://localhost:8080/swagger-ui/`.
 
 ### 2. **Executando com Maven**
@@ -76,17 +85,24 @@ Uma coleção do Postman foi incluída para facilitar o teste dos endpoints.
 1. Importe a collection disponível no repositório no Postman:
    - Arquivo: `Stoom-Teste.postman_collection`
 
-2. Configure a variável `base_url` no Postman para o URL do servidor (por padrão: `http://localhost:8080`).
+2. No Postman a URL do servidor (por padrão: `http://localhost:8080`).
 3. Utilize os endpoints da coleção para testar os recursos da API.
 
 #### Endpoints disponíveis:
-- **Brand Management**
-- **Category Management**
-- **Price Management**
-- **Product Management**
+- **Brand**
+- **Category**
+- **Price**
+- **Product**
 
 Siga a sequência de requisições para realizar CRUD de marcas, categorias, preços e produtos.
 
+## Swagger UI
+
+A documentação interativa da API pode ser acessada através do Swagger UI:
+
+- Acesse: [http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)
+
+Com o Swagger, você pode testar todos os endpoints da API diretamente na interface da web.
 ## Endpoints da API
 
 A API fornece os seguintes endpoints para gerenciar **marcas**, **categorias**, **produtos** e **preços**:
@@ -122,14 +138,6 @@ A API fornece os seguintes endpoints para gerenciar **marcas**, **categorias**, 
 - **PATCH /api/products/{id}/deactivate**: Desativa um produto.
 - **GET /api/products/brand/name/{brandName}**: Retorna produtos por nome da marca.
 - **GET /api/products/category/name/{categoryName}**: Retorna produtos por nome da categoria.
-
-## Swagger UI
-
-A documentação interativa da API pode ser acessada através do Swagger UI:
-
-- Acesse: [http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)
-
-Com o Swagger, você pode testar todos os endpoints da API diretamente na interface da web.
 
 ## Conclusão
 
